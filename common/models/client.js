@@ -16,7 +16,7 @@ module.exports = function (Client) {
             from: senderAddress,
             subject: 'Thanks for registering.',
             template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-            redirect: 'http://gamestore.ovh:3000/',
+            redirect: 'http://gamestore.ovh',
             text: '{href}',
             user: Client
         };

@@ -1,71 +1,78 @@
 <style>
-	body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-    margin: 0;
-		padding: 0;
-		height: 100vh;
-	}
-  main {
-		background-color: #e3e8f2;
-		border: 2px #ff9c02 solid;
-    border-radius: 4px;
-	  box-shadow: 3px 3px 6px;
-    overflow: hidden;
-    scroll-behavior: auto;
-    text-align: center;
-    max-width: 65%;
-    max-height: 80%;
-    padding: 1em 2.5em;
-		margin: auto;
-  }
-  main>p:first-child {
-    margin-bottom: 20px;
-  }
-  a {
-		border: 3px #ff9c02 solid;
-		border-radius: 4px;
-		color: #ffffff;
-	  font-weight: 700;
-  	text-decoration: none;
-		padding: 10px 15px;
-		line-height: 2em;
-		background-color: #273a62;
-		box-shadow: 2px 2px 8px;
-  }
-	.message {
-		text-align: left;
-	}
-	.consent {
-		border: 1px solid #ff9c02;
-		padding: 1em;
-		margin: 0;
-		text-align: left;
-	}
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+
+    main {
+        background-color: #e3e8f2;
+        border: 2px #ff9c02 solid;
+        border-radius: 4px;
+        box-shadow: 3px 3px 6px;
+        overflow: hidden;
+        scroll-behavior: auto;
+        text-align: center;
+        max-width: 65%;
+        max-height: 80%;
+        padding: 1em 2.5em;
+        margin: auto;
+    }
+
+    main>p:first-child {
+        margin-bottom: 20px;
+    }
+
+    a {
+        border: 3px #ff9c02 solid;
+        border-radius: 4px;
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 10px 15px;
+        line-height: 2em;
+        background-color: #273a62;
+        box-shadow: 2px 2px 8px;
+    }
+
+    .message {
+        text-align: left;
+    }
+
+    .consent {
+        border: 1px solid #ff9c02;
+        padding: 1em;
+        margin: 0;
+        text-align: left;
+    }
 </style>
+
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <main>
-	<h1>Bienvenue !</h1>
-		<p><strong>Nous vous remercions d'avoir choisi les services de "AdapteMonWeb".</strong></p>
-		<div class="consent">
-			<p>Avec l'entrée en vigueur du Réglement Général sur la Protection des données (RGPD),
-			nous vous confirmons que nous engageons à ne pas utiliser vos données personnelles qui sont stockées de manière sécurisée sur nos serveurs.
-		</p>
-		<p>
-			Ces données restent votre propriété et conformément au Règlement Européen,
-			vous pouvez les effacer grâce au bouton prévu à cet effet, dans notre interface.
-		</p>
-	</div>
-	<div class="message">
-	  <p>Pour finaliser votre insciption, il vous suffit de cliquer sur le lien ci-dessous.</p>
-	</div>
-	<span><a href="<%= text %>">Je confirme mon inscription</a></span>
-	<div class="message">
-		<br />
-		<hr />
-		<p>Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet e-mail.</p>
-	</div>
+    <h1>Bienvenue !</h1>
+    <p><strong>Nous vous remercions d'avoir choisi les services de "GameStore".</strong></p>
+    <!--<div class="consent">
+        <p>Avec l'entrée en vigueur du Réglement Général sur la Protection des données (RGPD),
+            nous vous confirmons que nous engageons à ne pas utiliser vos données personnelles qui sont stockées de
+            manière sécurisée sur nos serveurs.
+        </p>
+        <p>
+            Ces données restent votre propriété et conformément au Règlement Européen,
+            vous pouvez les effacer grâce au bouton prévu à cet effet, dans notre interface.
+        </p>
+    </div>-->
+    <div class="message">
+        <p>Pour finaliser votre insciption, il vous suffit de cliquer sur le lien ci-dessous.</p>
+    </div>
+    <span><a href="<%= text %>">Je confirme mon inscription</a></span>
+    <div class="message">
+        <br />
+        <hr />
+        <p>Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet e-mail.</p>
+    </div>
 </main>
