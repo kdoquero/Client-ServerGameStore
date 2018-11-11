@@ -12,5 +12,20 @@
     "name": "MysqlDb",
     "user": "admin",
     "connector": "mysql"
+  },
+  "Email": {
+    "name": "Email",
+    "connector": "mail",
+    "transports": [{
+      "type": "SMTP",
+      "host": "smtp.gmail.com",
+      "secure": true,
+      "port": 465,
+      "auth": {
+        "user": "gamestorecertif@gmail.com",
+        "pass": "gameStore!"
+      }
+    }]
   }
+  
 }

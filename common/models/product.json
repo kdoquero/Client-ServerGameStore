@@ -10,11 +10,19 @@
       "type": "string"
     },
     "idProduct": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "price": {
       "type": "number"
+    },
+    "deck": {
+      "type": "string"
+    },
+    "qty": {
+      "type": "number"
+    },
+    "image": {
+      "type": "object"
     }
   },
   "validations": [],
@@ -22,6 +30,14 @@
     "shoppingCarts": {
       "type": "hasAndBelongsToMany",
       "model": "shoppingCart",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "toBuys": {
+      "type": "hasAndBelongsToMany",
+      "model": "toBuy",
       "foreignKey": "",
       "options": {
         "nestRemoting": true

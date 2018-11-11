@@ -27,6 +27,14 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "toBuys": {
+      "type": "hasOne",
+      "model": "toBuy",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [

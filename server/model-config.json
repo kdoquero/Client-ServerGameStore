@@ -50,5 +50,8 @@
   "toBuy": {
     "dataSource": "MysqlDb",
     "public": false
+  },
+  "Email": {
+    "dataSource": "Email"
   }
 }
