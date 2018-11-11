@@ -1649,7 +1649,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var GameStoreApiService = /** @class */ (function () {
     function GameStoreApiService(http) {
         this.http = http;
-        this.apiDomain = "http://localhost:80/api/";
+        //apiDomain: string = "http://localhost:80/api/"
+        this.apiDomain = "http://51.75.141.128:80/api";
         this.isLogged = false;
         this.isloggedValidator = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](false);
         this.productList = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]([]);
