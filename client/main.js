@@ -277,6 +277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cart/cart.component */ "./src/app/cart/cart.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
+/* harmony import */ var _card_group_platform_card_group_platform_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./card-group-platform/card-group-platform.component */ "./src/app/card-group-platform/card-group-platform.component.ts");
+/* harmony import */ var _stripe_payement_stripe_payement_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./stripe-payement/stripe-payement.component */ "./src/app/stripe-payement/stripe-payement.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -308,18 +310,21 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
     { path: '', component: _homepage_homepage_component__WEBPACK_IMPORTED_MODULE_4__["HomepageComponent"] },
     { path: 'home', component: _homepage_homepage_component__WEBPACK_IMPORTED_MODULE_4__["HomepageComponent"] },
     { path: 'register', component: _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_13__["SignUpComponent"] },
     { path: 'details/:id/:name', component: _details_details_component__WEBPACK_IMPORTED_MODULE_16__["DetailsComponent"] },
-    { path: 'plateform/ps4', component: _platform1_platform1_component__WEBPACK_IMPORTED_MODULE_18__["Platform1Component"] },
-    { path: 'plateform/XboxOne', component: _platform2_platform2_component__WEBPACK_IMPORTED_MODULE_19__["Platform2Component"] },
-    { path: 'plateform/Psvita', component: _platform3_platform3_component__WEBPACK_IMPORTED_MODULE_20__["Platform3Component"] },
-    { path: 'plateform/NSwitch', component: _platform4_platform4_component__WEBPACK_IMPORTED_MODULE_21__["Platform4Component"] },
+    { path: 'platform/ps4', component: _platform2_platform2_component__WEBPACK_IMPORTED_MODULE_19__["Platform2Component"] },
+    { path: 'platform/XboxOne', component: _platform2_platform2_component__WEBPACK_IMPORTED_MODULE_19__["Platform2Component"] },
+    { path: 'platform/Psvita', component: _platform2_platform2_component__WEBPACK_IMPORTED_MODULE_19__["Platform2Component"] },
+    { path: 'platform/NSwitch', component: _platform2_platform2_component__WEBPACK_IMPORTED_MODULE_19__["Platform2Component"] },
     { path: 'cart', component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_22__["CartComponent"] },
     { path: 'cart/:id', component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_22__["CartComponent"] },
     { path: 'account/:id', component: _account_account_component__WEBPACK_IMPORTED_MODULE_24__["AccountComponent"] },
+    { path: 'payment', component: _stripe_payement_stripe_payement_component__WEBPACK_IMPORTED_MODULE_26__["StripePayementComponent"] },
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -345,7 +350,9 @@ var AppModule = /** @class */ (function () {
                 _platform3_platform3_component__WEBPACK_IMPORTED_MODULE_20__["Platform3Component"],
                 _platform4_platform4_component__WEBPACK_IMPORTED_MODULE_21__["Platform4Component"],
                 _cart_cart_component__WEBPACK_IMPORTED_MODULE_22__["CartComponent"],
-                _account_account_component__WEBPACK_IMPORTED_MODULE_24__["AccountComponent"]
+                _account_account_component__WEBPACK_IMPORTED_MODULE_24__["AccountComponent"],
+                _card_group_platform_card_group_platform_component__WEBPACK_IMPORTED_MODULE_25__["CardGroupPlatformComponent"],
+                _stripe_payement_stripe_payement_component__WEBPACK_IMPORTED_MODULE_26__["StripePayementComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientJsonpModule"],
@@ -359,6 +366,96 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/card-group-platform/card-group-platform.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/card-group-platform/card-group-platform.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card-group\">\n  <app-card class=\"card\" *ngFor=\"let game of lastGamesRandom; let i=index\" [game]=\"game\"></app-card>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/card-group-platform/card-group-platform.component.scss":
+/*!************************************************************************!*\
+  !*** ./src/app/card-group-platform/card-group-platform.component.scss ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "app-card {\n  margin: 1.2em; }\n"
+
+/***/ }),
+
+/***/ "./src/app/card-group-platform/card-group-platform.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/card-group-platform/card-group-platform.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: CardGroupPlatformComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardGroupPlatformComponent", function() { return CardGroupPlatformComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_games_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/games-data.service */ "./src/app/services/games-data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CardGroupPlatformComponent = /** @class */ (function () {
+    function CardGroupPlatformComponent(GameDataService, router) {
+        this.GameDataService = GameDataService;
+        this.router = router;
+        this.idPlatform = 0;
+    }
+    CardGroupPlatformComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.GameDataService.gamePlatform.subscribe(function (value) {
+            _this.lastGamesRandom = _this.shuffle(value);
+            _this.lastGamesRandom = _this.lastGamesRandom.slice(Math.max(value.length - 3, 1));
+            console.log(_this.lastGamesRandom);
+        });
+    };
+    CardGroupPlatformComponent.prototype.shuffle = function (array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    };
+    CardGroupPlatformComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-card-group-platform',
+            template: __webpack_require__(/*! ./card-group-platform.component.html */ "./src/app/card-group-platform/card-group-platform.component.html"),
+            styles: [__webpack_require__(/*! ./card-group-platform.component.scss */ "./src/app/card-group-platform/card-group-platform.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_services_games_data_service__WEBPACK_IMPORTED_MODULE_1__["GamesDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], CardGroupPlatformComponent);
+    return CardGroupPlatformComponent;
 }());
 
 
@@ -513,6 +610,7 @@ var CardComponent = /** @class */ (function () {
         this.game.qty = 0;
     };
     CardComponent.prototype.goToDetails = function () {
+        this.game.price = this.price;
         this.DataService.game = this.game;
         this.router.navigate(['details', this.game.id, this.game.name]);
         this.DataService.price = this.price;
@@ -545,7 +643,7 @@ var CardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container background\">\n    <table id=\"cart\" class=\"table table-hover table-condensed\">\n              <thead>\n              <tr>\n                <th style=\"width:50%\">Product</th>\n                <th style=\"width:10%\">Price</th>\n                <th style=\"width:8%\">Quantity</th>\n                <th style=\"width:22%\" class=\"text-center\">Subtotal</th>\n                <th style=\"width:10%\"></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr class=\"description\" *ngFor=\"let game of games;\">\n                <td data-th=\"Product\">\n                  <div class=\"row\">\n                    <div class=\" imgContainer col-sm-2 hidden-xs\"><img [src]=\"game.image.super_url\" alt=\"...\" class=\" imgCart img-responsive\"/></div>\n                    <div class=\"col-sm-10\">\n                      <h4 class=\"nomargin\">{{game.name}}</h4>\n                      <p>{{(game.deck && game.deck.length>128)? (game.deck | slice:0:128)+'..':(game.deck)}}</p>\n                    </div>\n                  </div>\n                </td>\n                <td data-th=\"Price\">{{game.price}}</td>\n                <td data-th=\"Quantity\">\n                  <input type=\"number\" class=\"form-control text-center\" [value]=\"game.qty\">\n                </td>\n                <td data-th=\"Subtotal\" class=\"text-center\">{{game.price * game.qty | number: '1.2-2'}}€</td>\n                <td class=\"actions\" data-th=\"\">\n                  <!--<button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>>-->\n                  <button class=\"btn btn-danger btn-sm\" (click)=\"deleteGame(game.id)\"><i class=\"fa fa-trash-o\"></i></button>\t\t\t\t\t\t\t\t\n                </td>\n              </tr>\n            </tbody>\n            <tfoot>\n              <tr class=\"visible-xs\">\n                <td class=\"text-center\"><strong>Total 1.99</strong></td>\n              </tr>\n              <tr>\n                <td><a href=\"#\" class=\"btn btn-light\"><i class=\"fa fa-angle-left\"></i> Continue Shopping</a></td>\n                <td colspan=\"2\" class=\"hidden-xs\"></td>\n                <td class=\"hidden-xs text-center\"><strong>{{total}}€</strong></td>\n                <td><a  (click)=\"deleteCart()\" class=\"btn btn-danger btn-block\">Delete Cart <i class=\"fa fa-angle-right\"></i></a></td>\n                <td><a  (click)=\"addproduct()\" class=\"btn btn-success btn-block\">Checkout <i class=\"fa fa-angle-right\"></i></a></td>\n              </tr>\n            </tfoot>\n          </table>\n</div>"
+module.exports = "<div class=\"container background\">\n    <table id=\"cart\" class=\"table table-hover table-condensed\">\n              <thead>\n              <tr>\n                <th style=\"width:50%\">Product</th>\n                <th style=\"width:10%\">Price</th>\n                <th style=\"width:8%\">Quantity</th>\n                <th style=\"width:22%\" class=\"text-center\">Subtotal</th>\n                <th style=\"width:10%\"></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr class=\"description\" *ngFor=\"let game of games;\">\n                <td data-th=\"Product\">\n                  <div class=\"row\">\n                    <div class=\" imgContainer col-sm-2 hidden-xs\"><img [src]=\"game.image.super_url\" alt=\"...\" class=\" imgCart img-responsive\"/></div>\n                    <div class=\"col-sm-10\">\n                      <h4 class=\"nomargin\">{{game.name}}</h4>\n                      <p>{{(game.deck && game.deck.length>128)? (game.deck | slice:0:128)+'..':(game.deck)}}</p>\n                    </div>\n                  </div>\n                </td>\n                <td data-th=\"Price\">{{game.price}}</td>\n                <td data-th=\"Quantity\">\n                  <input type=\"number\" class=\"form-control text-center\" [value]=\"game.qty\">\n                </td>\n                <td data-th=\"Subtotal\" class=\"text-center\">{{game.price * game.qty | number: '1.2-2'}}€</td>\n                <td class=\"actions\" data-th=\"\">\n                  <!--<button class=\"btn btn-info btn-sm\"><i class=\"fa fa-refresh\"></i></button>>-->\n                  <button class=\"btn btn-danger btn-sm\" (click)=\"deleteGame(game.id)\"><i class=\"fa fa-trash-o\"></i></button>\t\t\t\t\t\t\t\t\n                </td>\n              </tr>\n            </tbody>\n            <tfoot>\n              <tr class=\"visible-xs\">\n                <td class=\"text-center\"><strong>Total 1.99</strong></td>\n              </tr>\n              <tr>\n                <td><a href=\"#\" class=\"btn btn-light\"><i class=\"fa fa-angle-left\"></i> Continue Shopping</a></td>\n                <td colspan=\"2\" class=\"hidden-xs\"></td>\n                <td class=\"hidden-xs text-center\"><strong>{{total | number: '1.2-2'}}€</strong></td>\n                <td><a  (click)=\"deleteCart()\" class=\"btn btn-danger btn-block\">Delete Cart <i class=\"fa fa-angle-right\"></i></a></td>\n                <td><a  (click)=\"addproduct()\" class=\"btn btn-success btn-block\">Checkout <i class=\"fa fa-angle-right\"></i></a></td>\n              </tr>\n            </tfoot>\n          </table>\n</div>"
 
 /***/ }),
 
@@ -573,6 +671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_cart_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/cart-data.service */ "./src/app/services/cart-data.service.ts");
 /* harmony import */ var _services_game_store_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/game-store-api.service */ "./src/app/services/game-store-api.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -585,10 +684,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CartComponent = /** @class */ (function () {
-    function CartComponent(CartService, gameStoreService) {
+    function CartComponent(CartService, gameStoreService, Router) {
         this.CartService = CartService;
         this.gameStoreService = gameStoreService;
+        this.Router = Router;
     }
     CartComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -615,9 +716,10 @@ var CartComponent = /** @class */ (function () {
         console.log(this.CartService.cartItems);
         this.gameStoreService.productList.subscribe(function (products) {
             _this.CartService.cartItems = products;
-            var uniqueArray = _this.CartService.cartItems.filter(function (item, pos, self) {
+            var uniqueArray = products.filter(function (item, pos, self) {
                 return self.indexOf(item) == pos;
             });
+            console.log(uniqueArray);
             _this.games = uniqueArray;
         });
         this.CartService.isTotalPrice.subscribe(function (total) {
@@ -639,7 +741,9 @@ var CartComponent = /** @class */ (function () {
         var _this = this;
         if (this.gameStoreService.client) {
             console.log(this.games);
-            var addGame = this.removeDuplicates(this.games, "id");
+            var addGame = this.games.filter(function (item, pos, self) {
+                return self.indexOf(item) == pos;
+            });
             console.log(addGame);
             addGame.forEach(function (game) {
                 var newGame = {
@@ -654,8 +758,10 @@ var CartComponent = /** @class */ (function () {
                     console.log(value);
                 });
             });
+            this.Router.navigate(["payment"]);
         }
         else {
+            this.Router.navigate(["payment"]);
             console.log("not connected");
             localStorage.setItem('itemsGameStore', JSON.stringify(this.games));
         }
@@ -681,7 +787,7 @@ var CartComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./cart.component.html */ "./src/app/cart/cart.component.html"),
             styles: [__webpack_require__(/*! ./cart.component.scss */ "./src/app/cart/cart.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services_cart_data_service__WEBPACK_IMPORTED_MODULE_1__["CartDataService"], _services_game_store_api_service__WEBPACK_IMPORTED_MODULE_2__["GameStoreApiService"]])
+        __metadata("design:paramtypes", [_services_cart_data_service__WEBPACK_IMPORTED_MODULE_1__["CartDataService"], _services_game_store_api_service__WEBPACK_IMPORTED_MODULE_2__["GameStoreApiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], CartComponent);
     return CartComponent;
 }());
@@ -697,7 +803,7 @@ var CartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\t<div class=\"card\">\n\t\t<div class=\"container-fliud\">\n\t\t\t<div class=\"wrapper row\">\n\t\t\t\t<div class=\"preview col-md-6\">\n\n\t\t\t\t\t<div class=\"preview-pic tab-content\">\n\t\t\t\t\t\t<div class=\"tab-pane active\" id=\"pic-0\"><img [src]=\"game.image.super_url\" /></div>\n\t\t\t\t\t\t<div class=\"tab-pane \" *ngFor=\"let image of game.images | slice:0:5; let i=index\" [attr.id]=\"'pic-'+i\"><img [src]=\"image.super_url\"/></div>\n\n\t\t\t\t\t</div>\n\t\t\t\t\t<ul class=\"preview-thumbnail nav nav-tabs\">\n\t\t\t\t\t\t<li class=\"active\"><a data-target=\"#pic-0\" data-toggle=\"tab\"><img [src]=\"game.image.super_url\" /></a></li>\n\t\t\t\t\t\t<li  *ngFor=\"let image of game.images | slice:0:5; let i=index\" ><a [attr.data-target]=\"'#pic-'+i\" data-toggle=\"tab\"><img [src]=\"image.super_url\" /></a></li>\n\t\t\t\t\t</ul>\n\n\t\t\t\t</div>\n\t\t\t\t<div class=\"details col-md-6\">\n\t\t\t\t\t<h3 class=\"product-title\">{{game.name}}</h3>\n\t\t\t\t\t<div class=\"rating\">\n\t\t\t\t\t\t<div class=\"stars\">\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"review-no\">{{game.number_of_user_reviews}} review</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<p class=\"product-description\">{{game.deck}}</p>\n\t\t\t\t\t<h4 class=\"price\">current price: <span>$180</span></h4>\n\t\t\t\t\t<div class=\"action\">\n\t\t\t\t\t\t<button class=\"add-to-cart btn btn-default\" type=\"button\">add to cart</button>\n\t\t\t\t\t\t<button class=\"like btn btn-default\" type=\"button\"><span class=\"fa fa-heart\"></span></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"container\">\n\t<div class=\"card\">\n\t\t<div class=\"container-fliud\">\n\t\t\t<div class=\"wrapper row\">\n\t\t\t\t<div class=\"preview col-md-6\">\n\n\t\t\t\t\t<div class=\"preview-pic tab-content\">\n\t\t\t\t\t\t<div class=\"tab-pane active\" id=\"pic-0\"><img [src]=\"game.image.super_url\" /></div>\n\t\t\t\t\t\t<div class=\"tab-pane \" *ngFor=\"let image of game.images | slice:0:5; let i=index\" [attr.id]=\"'pic-'+i\"><img [src]=\"image.super_url\"/></div>\n\n\t\t\t\t\t</div>\n\t\t\t\t\t<ul class=\"preview-thumbnail nav nav-tabs\">\n\t\t\t\t\t\t<li class=\"active\"><a data-target=\"#pic-0\" data-toggle=\"tab\"><img [src]=\"game.image.super_url\" /></a></li>\n\t\t\t\t\t\t<li  *ngFor=\"let image of game.images | slice:0:5; let i=index\" ><a [attr.data-target]=\"'#pic-'+i\" data-toggle=\"tab\"><img [src]=\"image.super_url\" /></a></li>\n\t\t\t\t\t</ul>\n\n\t\t\t\t</div>\n\t\t\t\t<div class=\"details col-md-6\">\n\t\t\t\t\t<h3 class=\"product-title\">{{game.name}}</h3>\n\t\t\t\t\t<div class=\"rating\">\n\t\t\t\t\t\t<div class=\"stars\">\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star checked\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star\"></span>\n\t\t\t\t\t\t\t<span class=\"fa fa-star\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span class=\"review-no\">{{game.number_of_user_reviews}} review</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<p class=\"product-description\">{{game.deck}}</p>\n\t\t\t\t\t<h4 class=\"price\">current price: <span>{{game.price}} €</span></h4>\n\t\t\t\t\t<div class=\"action\">\n\t\t\t\t\t\t<button class=\"add-to-cart btn btn-default\" type=\"button\" (click)=\"add()\">add to cart</button>\n\t\t\t\t\t\t<button class=\"like btn btn-default\" type=\"button\"><span class=\"fa fa-heart\"></span></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -782,6 +888,10 @@ var DetailsComponent = /** @class */ (function () {
         }
     }
     DetailsComponent.prototype.ngOnInit = function () {
+    };
+    DetailsComponent.prototype.add = function () {
+        this.game.qty++;
+        this.cartService.addProduct(this.game, this.game.price);
     };
     DetailsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -975,7 +1085,7 @@ var LastReleasedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <nav class=\"navbar fixed-top navbar-expand-lg navbar-light\">\n    <div>\n      <img id=\"logo\" src=\"../../assets/images/90367_2303269_199577_thumbnail.jpg\" alt=\"logo\">\n    </div>\n    <a class=\"navbar-brand\" href=\"#\">GameShop</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\"\n      aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\n      <ul class=\"navbar-nav nav-object-1\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" routerLink=\"\">Home <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Playstation 4</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Xbox One</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Nintendo Switch</a>\n        </li>\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            Plus\n          </a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">Nintendo Ds</a>\n            <a class=\"dropdown-item\" href=\"#\">PS Vita</a>\n            <a class=\"dropdown-item\" href=\"#\">Something else here</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n    <ul class=\"nav navbar-nav navbar-right nav-object-2\">\n      <li>\n        <span> Total: {{total | number: '1.0-0'}} €</span>\n      </li>\n      <li class=\"cart\">\n        <a routerLink=\"/cart\">\n          <span class=\"fa-stack fa-2x has-badge\" [attr.data-count]=\"totalItems\">\n            <i class=\"fa fa-circle fa-stack-2x\"></i>\n            <i class=\"fa fa-shopping-cart fa-stack-1x fa-inverse\"></i>\n\n          </span>\n        </a>\n      </li>\n      <li class=\"dropdown\">\n        <a *ngIf=\"!isLogged\" href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><b>Login</b> <span class=\"caret\"></span></a>\n        <a *ngIf=\"isLogged\" href=\"#\" (click)=\"goToAccount()\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><b>My Account</b> <span class=\"caret\"></span></a>\n        <ul id=\"login-dp\" class=\"dropdown-menu dropdown-menu-right\">\n          <li *ngIf=\"isLogged\">\n            <div class=\"bottom text-center\">\n              <h4>Hello {{name}}</h4>\n              <div class=\"form-group\">\n                  <button (click)=\"logOut()\" type=\"button\" class=\"btn btn-primary btn-block\">Log out</button>\n              </div>\n            </div>\n          </li>\n          <li *ngIf=\"!isLogged\">\n            <div class=\"row\">\n              <div class=\"col-md-12\">\n                Login via Email\n                <form [formGroup]=\"formSign\" class=\"form\" role=\"form\" method=\"post\" (submit)=\"onSubmit()\"\n                  accept-charset=\"UTF-8\" id=\"login-nav\">\n                  <div class=\"form-group\">\n                    <label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n                    <input type=\"email\" name=\"email\" formControlName=\"email\" [formGroup]=\"formSign\" class=\"form-control\"\n                      id=\"exampleInputEmail2\" placeholder=\"Email address\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"sr-only\" for=\"exampleInputPassword2\">Password</label>\n                    <input type=\"password\" name=\"password\" formControlName=\"password\" [formGroup]=\"formSign\" class=\"form-control\"\n                      id=\"exampleInputPassword2\" placeholder=\"Password\" required>\n                    <div class=\"help-block text-right\"><a href=\"\">Forget the password ?</a></div>\n                  </div>\n                  <div class=\"form-group\">\n                    <button type=\"submit\" class=\"btn btn-primary btn-block\">Sign in</button>\n                  </div>\n                  <div class=\"checkbox\">\n                    <label>\n                      <input (change)=\"checkOnline($event)\" type=\"checkbox\"> keep me logged-in\n                    </label>\n                  </div>\n                </form>\n              </div>\n              <div class=\"bottom text-center\">\n                New here ? <a routerLink=\"/register\"><b>Join Us</b></a>\n              </div>\n            </div>\n          </li>\n        </ul>\n      </li>\n    </ul>\n  </nav>\n</header>"
+module.exports = "<header>\n  <nav class=\"navbar fixed-top navbar-expand-lg navbar-light\">\n    <div>\n      <img id=\"logo\" src=\"../../assets/images/90367_2303269_199577_thumbnail.jpg\" alt=\"logo\">\n    </div>\n    <a class=\"navbar-brand\" href=\"#\">GameShop</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\"\n      aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\n      <ul class=\"navbar-nav nav-object-1\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" routerLink=\"\">Home <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" routerLink=\"/platform/ps4\">Playstation 4</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" routerLink=\"/platform/XboxOne\">Xbox One</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" routerLink=\"/platform/NSwitch\">Nintendo Switch</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" routerLink=\"/platform/NSwitch\">Nintendo Switch</a>\n        </li>\n\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            Plus\n          </a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">Nintendo Ds</a>\n            <a class=\"dropdown-item\" href=\"#\">PS Vita</a>\n            <a class=\"dropdown-item\" href=\"#\">Something else here</a>\n          </div>\n        </li>\n        <li class=\" nav-item dropdown\">\n          <a *ngIf=\"!isLogged\" href=\"#\" class=\" nav-link login dropdown-toggle\" data-toggle=\"dropdown\"><b>Login</b> <span class=\"caret\"></span></a>\n          <a *ngIf=\"isLogged\" href=\"#\" (click)=\"goToAccount()\" class=\" nav-link login dropdown-toggle\" data-toggle=\"dropdown\"><b>My\n              Account</b> <span class=\"caret\"></span></a>\n          <ul id=\"login-dp\" class=\"dropdown-menu dropdown-menu-right\">\n            <li *ngIf=\"isLogged\">\n              <div class=\"bottom text-center\">\n                <h4>Hello {{name}}</h4>\n                <div class=\"form-group\">\n                  <button (click)=\"logOut()\" type=\"button\" class=\"btn btn-primary btn-block\">Log out</button>\n                </div>\n              </div>\n            </li>\n            <li *ngIf=\"!isLogged\">\n              <div class=\"row\">\n                <div class=\"col-md-12\">\n                  Login via Email\n                  <form [formGroup]=\"formSign\" class=\"form\" role=\"form\" method=\"post\" (submit)=\"onSubmit()\"\n                    accept-charset=\"UTF-8\" id=\"login-nav\">\n                    <div class=\"form-group\">\n                      <label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n                      <input type=\"email\" name=\"email\" formControlName=\"email\" [formGroup]=\"formSign\" class=\"form-control\"\n                        id=\"exampleInputEmail2\" placeholder=\"Email address\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label class=\"sr-only\" for=\"exampleInputPassword2\">Password</label>\n                      <input type=\"password\" name=\"password\" formControlName=\"password\" [formGroup]=\"formSign\" class=\"form-control\"\n                        id=\"exampleInputPassword2\" placeholder=\"Password\" required>\n                      <div class=\"help-block text-right\"><a href=\"\">Forget the password ?</a></div>\n                    </div>\n                    <div class=\"form-group\">\n                      <button type=\"submit\" class=\"btn btn-primary btn-block\">Sign in</button>\n                    </div>\n                    <div class=\"checkbox\">\n                      <label>\n                        <input (change)=\"checkOnline($event)\" type=\"checkbox\"> keep me logged-in\n                      </label>\n                    </div>\n                  </form>\n                </div>\n                <div class=\"bottom text-center\">\n                  New here ? <a routerLink=\"/register\"><b>Join Us</b></a>\n                </div>\n              </div>\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    <ul class=\"nav navbar-nav navbar-right nav-object-2\">\n      <li class=\"cart\">\n        <a routerLink=\"/cart\">\n          <span class=\"fa-stack fa-2x has-badge\" [attr.data-count]=\"totalItems\">\n            <i class=\"fa fa-circle fa-stack-2x\"></i>\n            <i class=\"fa fa-shopping-cart fa-stack-1x fa-inverse\"></i>\n\n          </span>\n        </a>\n      </li>\n\n    </ul>\n  </nav>\n</header>"
 
 /***/ }),
 
@@ -986,7 +1096,7 @@ module.exports = "<header>\n  <nav class=\"navbar fixed-top navbar-expand-lg nav
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "nav {\n  background-color: white;\n  margin-top: 35px; }\n\n#logo {\n  height: 50px;\n  width: 50px; }\n\n.navbar-nav {\n  width: 85%;\n  justify-content: flex-end; }\n\n.nav-object-1 {\n  width: 100%; }\n\n.nav-object-2 {\n  width: 25%; }\n\n#login-dp {\n  min-width: 250px;\n  padding: 14px 14px 0;\n  overflow: hidden;\n  background-color: rgba(255, 255, 255, 0.8); }\n\n#login-dp .help-block {\n  font-size: 12px; }\n\n#login-dp .bottom {\n  background-color: rgba(255, 255, 255, 0.8);\n  border-top: 1px solid #ddd;\n  clear: both;\n  padding: 14px; }\n\n#login-dp .social-buttons {\n  margin: 12px 0; }\n\n#login-dp .social-buttons a {\n  width: 49%; }\n\n#login-dp .form-group {\n  margin-bottom: 10px; }\n\n.btn-fb {\n  color: #fff;\n  background-color: #3b5998; }\n\n.btn-fb:hover {\n  color: #fff;\n  background-color: #496ebc; }\n\n.btn-tw {\n  color: #fff;\n  background-color: #55acee; }\n\n.btn-tw:hover {\n  color: #fff;\n  background-color: #59b5fa; }\n\n.bottom {\n  width: 100%; }\n\n@media (max-width: 768px) {\n  #login-dp {\n    background-color: inherit;\n    color: #fff; }\n  #login-dp .bottom {\n    background-color: inherit;\n    border-top: 0 none; } }\n\n.navbar-text {\n  margin: 0 1.2em;\n  padding: 0; }\n\n.cart {\n  height: 30px;\n  width: 30px;\n  margin-right: 50px; }\n\n.cart {\n  margin-right: 50px; }\n\n.fa-stack[data-count]:after {\n  position: absolute;\n  right: 0%;\n  top: 0%;\n  content: attr(data-count);\n  font-size: 40%;\n  padding: .6em;\n  border-radius: 999px;\n  line-height: .75em;\n  color: black;\n  color: black;\n  text-align: center;\n  min-width: 2em;\n  font-weight: bold;\n  background: yellow;\n  border-style: solid; }\n\n.fa-circle {\n  color: black; }\n\n.fa-2x {\n  font-size: 1.5em; }\n"
+module.exports = "nav {\n  background-color: white;\n  margin-top: 35px; }\n\n#logo {\n  height: 50px;\n  width: 50px; }\n\n.navbar-nav {\n  width: 85%;\n  justify-content: flex-end; }\n\n.nav-object-1 {\n  width: 100%; }\n\n.nav-object-2 {\n  width: 25%; }\n\n#login-dp {\n  min-width: 250px;\n  padding: 14px 14px 0;\n  overflow: hidden;\n  background-color: rgba(255, 255, 255, 0.8); }\n\n#login-dp .help-block {\n  font-size: 12px; }\n\n#login-dp .bottom {\n  background-color: rgba(255, 255, 255, 0.8);\n  border-top: 1px solid #ddd;\n  clear: both;\n  padding: 14px; }\n\n#login-dp .social-buttons {\n  margin: 12px 0; }\n\n#login-dp .social-buttons a {\n  width: 49%; }\n\n#login-dp .form-group {\n  margin-bottom: 10px; }\n\n.btn-fb {\n  color: #fff;\n  background-color: #3b5998; }\n\n.btn-fb:hover {\n  color: #fff;\n  background-color: #496ebc; }\n\n.btn-tw {\n  color: #fff;\n  background-color: #55acee; }\n\n.btn-tw:hover {\n  color: #fff;\n  background-color: #59b5fa; }\n\n.bottom {\n  width: 100%; }\n\n@media (max-width: 768px) {\n  #login-dp {\n    background-color: inherit;\n    color: #fff; }\n  #login-dp .bottom {\n    background-color: inherit;\n    border-top: 0 none; } }\n\n.navbar-text {\n  margin: 0 1.2em;\n  padding: 0; }\n\n.cart {\n  height: 30px;\n  width: 30px;\n  margin-right: 50px; }\n\n.cart {\n  margin-right: 50px; }\n\n.fa-stack[data-count]:after {\n  position: absolute;\n  right: 0%;\n  top: 0%;\n  content: attr(data-count);\n  font-size: 40%;\n  padding: .6em;\n  border-radius: 999px;\n  line-height: .75em;\n  color: black;\n  color: black;\n  text-align: center;\n  min-width: 2em;\n  font-weight: bold;\n  background: yellow;\n  border-style: solid; }\n\n.login b {\n  color: blue; }\n\n.fa-circle {\n  color: black; }\n\n.fa-2x {\n  font-size: 1.5em; }\n"
 
 /***/ }),
 
@@ -1130,7 +1240,7 @@ var NavbarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  platform works!\n</p>\n"
+module.exports = "<h1>\n  Playstation 4\n</h1>\n"
 
 /***/ }),
 
@@ -1193,7 +1303,7 @@ var PlatformComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <div>\n    <h3>Playstation 4</h3>\n  </div>\n</section>\n"
+module.exports = "<section class=\"background\">\n  <div>\n    <h2 class=\"textAlign\">Playstation 4</h2>\n  </div>\n  <app-card-group></app-card-group>\n  <app-card-group></app-card-group>\n  <app-card-group></app-card-group>\n\n</section>\n"
 
 /***/ }),
 
@@ -1256,7 +1366,7 @@ var Platform1Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  platform2 works!\n</p>\n"
+module.exports = "<section class=\"background\">\n  <div>\n    <h2 class=\"textAlign\">{{name}}</h2>\n  </div>\n <app-card-group-platform></app-card-group-platform>\n <app-card-group-platform></app-card-group-platform>\n <app-card-group-platform></app-card-group-platform>\n</section>\n"
 
 /***/ }),
 
@@ -1282,6 +1392,8 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Platform2Component", function() { return Platform2Component; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_games_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/games-data.service */ "./src/app/services/games-data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1292,10 +1404,47 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var Platform2Component = /** @class */ (function () {
-    function Platform2Component() {
+    function Platform2Component(gameDataService, router) {
+        this.gameDataService = gameDataService;
+        this.router = router;
+        this.games = [];
+        this.idPlatform = 0;
+        this.name = "";
     }
     Platform2Component.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.router);
+        switch (this.router.url) {
+            case "/platform/ps4":
+                this.name = "Playstation 4";
+                this.idPlatform = 146;
+                break;
+            case "/platform/XboxOne":
+                this.name = "Microsoft Xbox One";
+                this.idPlatform = 145;
+                break;
+            case "/platform/NSwitch":
+                this.name = "Nintendo Switch";
+                this.idPlatform = 157;
+                break;
+            default:
+                this.name = "Playstation 4";
+                this.idPlatform = 146;
+                break;
+        }
+        this.gameDataService.getgameByPlatform(this.idPlatform).subscribe(function (data) {
+            var results;
+            results = data;
+            _this.gameDataService.gamePlatform.next(results.results);
+            console.log(results.results);
+            //this.lastGames = results.results.slice(Math.max(results.results.length - 5, 1));
+            //this.gameDataService.gamePlatform = results.results;
+        });
+    };
+    Platform2Component.prototype.ngAfterViewInit = function () {
     };
     Platform2Component = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1303,7 +1452,7 @@ var Platform2Component = /** @class */ (function () {
             template: __webpack_require__(/*! ./platform2.component.html */ "./src/app/platform2/platform2.component.html"),
             styles: [__webpack_require__(/*! ./platform2.component.scss */ "./src/app/platform2/platform2.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_games_data_service__WEBPACK_IMPORTED_MODULE_1__["GamesDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], Platform2Component);
     return Platform2Component;
 }());
@@ -1319,7 +1468,7 @@ var Platform2Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  platform3 works!\n</p>\n"
+module.exports = "<section class=\"background\">\n  <div>\n    <h2 class=\"textAlign\">Nintendo Switch</h2>\n  </div>\n</section>"
 
 /***/ }),
 
@@ -1382,7 +1531,7 @@ var Platform3Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  platform4 works!\n</p>\n"
+module.exports = "<section class=\"background\">\n  <div>\n    <h2 class=\"textAlign\">Nintendo Switch</h2>\n  </div>\n</section>"
 
 /***/ }),
 
@@ -1742,6 +1891,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GamesDataService", function() { return GamesDataService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _giant_bomb_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./giant-bomb-api.service */ "./src/app/services/giant-bomb-api.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1753,10 +1904,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var GamesDataService = /** @class */ (function () {
     function GamesDataService(giantBombApi) {
         var _this = this;
         this.giantBombApi = giantBombApi;
+        this.gamePlatform = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]([]);
         console.log('test');
         var gamesReleased = localStorage.getItem('gamesreleased');
         if (gamesReleased) {
@@ -1774,6 +1928,10 @@ var GamesDataService = /** @class */ (function () {
             });
         }
     }
+    GamesDataService.prototype.getgameByPlatform = function (idPlatform) {
+        return this.giantBombApi.getLastExpectedReleasePerPlatform(idPlatform).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (data) {
+        }));
+    };
     GamesDataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -1880,7 +2038,7 @@ var GiantBombApiService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container background\">\n  <form [formGroup]=\"form\" class=\"form-horizontal\" (submit)=\"onSubmit()\" role=\"form\" method=\"POST\" action=\"/register\">\n    <div class=\"row\">\n      <div class=\"col-md-3\"></div>\n      <div class=\"col-md-6\">\n        <h2>Register New User</h2>\n        <hr>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"name\">Name</label>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-user\"></i></div>\n            <input type=\"text\" name=\"name\" formControlName=\"name\" [formGroup]=\"form\" class=\"form-control\" id=\"name\"\n              placeholder=\"Name\" required autofocus>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n          <span class=\"text-danger align-middle\">\n            <!-- Put name validation error messages here -->\n          </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"email\">E-Mail Address</label>\n      </div>\n      <div class=\"col-md-6 email\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-at\"></i></div>\n            <input type=\"text\" name=\"email\" formControlName=\"email\" [formGroup]=\"form\" class=\"form-control\" id=\"email\"\n              placeholder=\"you@example.com\" required autofocus>\n\n          </div>\n          <span *ngIf=\"invalidCredentials\" class=\"text-danger email-span align-middle\">\n            <i class=\"fa fa-close\">Already registered email</i>\n          </span>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n          <span class=\"text-danger align-middle\">\n            <!-- Put e-mail validation error messages here -->\n          </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"password\">Password</label>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group has-danger\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-key\"></i></div>\n            <input type=\"password\" name=\"password\" formControlName=\"password\" [formGroup]=\"form\" class=\"form-control\"\n              id=\"password\" placeholder=\"Password\" required>\n          </div>\n          <div *ngIf=\"form.controls.password.minLength && !form.controls.password.errors.required\" class=\"alert alert-danger\">\n            <span>Password should contain 6 characters</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"password\">Confirm Password</label>\n      </div>\n      <div class=\"col-md-6 email\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\">\n              <i class=\"fa fa-repeat\"></i>\n            </div>\n            <input type=\"password\" name=\"password-confirmation\" formControlName=\"confirmPassword\" [formGroup]=\"form\"\n              class=\"form-control\" id=\"password-confirm\" placeholder=\"Password\" required>\n\n\n          </div>\n          <span *ngIf=\"form.controls.confirmPassword.errors?.MatchPassword\" class=\"text-danger email-span align-middle\">\n            <i class=\"fa fa-close\">Passwords do not\n              match</i>\n          </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3\"></div>\n      <div class=\"col-md-6\">\n        <button type=\"submit\" class=\"btn btn-success\"><i class=\"fa fa-user-plus\"></i> Register</button>\n      </div>\n      <span *ngIf=\"validEmail\" class=\"text-danger email-span align-middle\">\n        <i class=\"fa fa-close\">Passwords do not\n          match</i>\n      </span>\n    </div>\n  </form>\n</div>"
+module.exports = "<div class=\"container background\">\n  <form [formGroup]=\"form\" class=\"form-horizontal\" (submit)=\"onSubmit()\" role=\"form\" method=\"POST\" action=\"/register\">\n    <div class=\"row\">\n      <div class=\"col-md-3\"></div>\n      <div class=\"col-md-6\">\n        <h2>Register New User</h2>\n        <hr>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"name\">Name</label>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-user\"></i></div>\n            <input type=\"text\" name=\"name\" formControlName=\"name\" [formGroup]=\"form\" class=\"form-control\" id=\"name\"\n              placeholder=\"Name\" required autofocus>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n          <span class=\"text-danger align-middle\">\n            <!-- Put name validation error messages here -->\n          </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"email\">E-Mail Address</label>\n      </div>\n      <div class=\"col-md-6 email\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-at\"></i></div>\n            <input type=\"text\" name=\"email\" formControlName=\"email\" [formGroup]=\"form\" class=\"form-control\" id=\"email\"\n              placeholder=\"you@example.com\" required autofocus>\n\n          </div>\n          <span *ngIf=\"invalidCredentials\" class=\"text-danger email-span align-middle\">\n            <i class=\"fa fa-close\">Already registered email</i>\n          </span>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n          <span class=\"text-danger align-middle\">\n            <!-- Put e-mail validation error messages here -->\n          </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"password\">Password</label>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group has-danger\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-key\"></i></div>\n            <input type=\"password\" name=\"password\" formControlName=\"password\" [formGroup]=\"form\" class=\"form-control\"\n              id=\"password\" placeholder=\"Password\" required>\n          </div>\n          <div *ngIf=\"form.controls.password.minLength && !form.controls.password.errors.required\" class=\"alert alert-danger\">\n            <span>Password should contain 6 characters</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-3\">\n        <div class=\"form-control-feedback\">\n\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 field-label-responsive\">\n        <label for=\"password\">Confirm Password</label>\n      </div>\n      <div class=\"col-md-6 email\">\n        <div class=\"form-group\">\n          <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n            <div class=\"input-group-addon\" style=\"width: 2.6rem\">\n              <i class=\"fa fa-repeat\"></i>\n            </div>\n            <input type=\"password\" name=\"password-confirmation\" formControlName=\"confirmPassword\" [formGroup]=\"form\"\n              class=\"form-control\" id=\"password-confirm\" placeholder=\"Password\" required>\n\n\n          </div>\n          <span *ngIf=\"form.controls.confirmPassword.errors?.MatchPassword\" class=\"text-white description  email-span align-middle\">\n            <i class=\"fa fa-close\">Passwords do not\n              match</i>\n          </span>\n          <span *ngIf=\"validEmail ==true\" class=\"text-white description  email-span align-middle\">\n              <i class=\"fa fa-close\">Email send, click on the link to confirm your inscription</i>\n            </span>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3\"></div>\n      <div class=\"col-md-6\">\n        <button type=\"submit\" class=\"btn btn-success\"><i class=\"fa fa-user-plus\"></i> Register</button>\n      </div>\n    </div>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1891,7 +2049,7 @@ module.exports = "<div class=\"container background\">\n  <form [formGroup]=\"fo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@media (min-width: 768px) {\n  .field-label-responsive {\n    padding-top: .5rem;\n    text-align: right; } }\n\n.email {\n  height: 70px; }\n\n.email-span {\n  margin-left: 43px; }\n\nh2 {\n  text-align: center; }\n"
+module.exports = "@media (min-width: 768px) {\n  .field-label-responsive {\n    padding-top: .5rem;\n    text-align: right; } }\n\n.email {\n  height: 70px; }\n\n.email-span {\n  margin-left: 43px; }\n\nh2 {\n  text-align: center; }\n\n.description {\n  background-color: rgba(70, 57, 57, 0.9);\n  border: 2px solid;\n  padding: 8px;\n  border-radius: 7px;\n  color: #fff; }\n"
 
 /***/ }),
 
@@ -1961,6 +2119,169 @@ var SignUpComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], _services_game_store_api_service__WEBPACK_IMPORTED_MODULE_3__["GameStoreApiService"]])
     ], SignUpComponent);
     return SignUpComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/stripe-payement/stripe-payement.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/stripe-payement/stripe-payement.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"background\">\n  <div style=\"margin-top :50px;\">\n      <form #checkout=\"ngForm\" (ngSubmit)=\"onSubmit(checkout)\" class=\"checkout\">\n          <div class=\"form-row\">\n            <label for=\"card-info\">Card Info</label>\n            <div id=\"card-info\" #cardInfo></div>\n        \n            <div id=\"card-errors\" role=\"alert\" *ngIf=\"error\">{{ error }}</div>\n          </div>\n        \n          <button type=\"submit\">{{total | number: '1.2-2'}}€</button>\n      </form>\n  </div>\n   \n</section>\n"
+
+/***/ }),
+
+/***/ "./src/app/stripe-payement/stripe-payement.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/stripe-payement/stripe-payement.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "form.checkout {\n  max-width: 500px;\n  margin: 2rem auto;\n  text-align: center;\n  border: 2px solid #eee;\n  border-radius: 8px;\n  padding: 1rem 2rem;\n  background: white;\n  font-family: monospace;\n  color: #525252;\n  font-size: 1.1rem; }\n\nform.checkout button {\n  padding: 0.5rem 1rem;\n  color: white;\n  background: coral;\n  border: none;\n  border-radius: 4px;\n  margin-top: 1rem; }\n\nform.checkout button:active {\n  background: #a54c2b; }\n\n.StripeElement {\n  margin: 1rem 0 1rem;\n  background-color: white;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  box-shadow: 0 1px 3px 0 #e6ebf1;\n  transition: box-shadow 150ms ease; }\n\n.StripeElement--focus {\n  box-shadow: 0 1px 3px 0 #cfd7df; }\n\n.StripeElement--invalid {\n  border-color: #fa755a; }\n\n.StripeElement--webkit-autofill {\n  background-color: #fefde5 !important; }\n"
+
+/***/ }),
+
+/***/ "./src/app/stripe-payement/stripe-payement.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/stripe-payement/stripe-payement.component.ts ***!
+  \**************************************************************/
+/*! exports provided: StripePayementComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StripePayementComponent", function() { return StripePayementComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_cart_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/cart-data.service */ "./src/app/services/cart-data.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+var StripePayementComponent = /** @class */ (function () {
+    function StripePayementComponent(cd, cartService) {
+        this.cd = cd;
+        this.cartService = cartService;
+        this.cardHandler = this.onChange.bind(this);
+    }
+    StripePayementComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cartService.isTotalPrice.subscribe(function (value) {
+            _this.total = value;
+        });
+    };
+    StripePayementComponent.prototype.ngAfterViewInit = function () {
+        var stripe = Stripe('pk_test_9pF6IgWVPFnh5ZowHn7HaBuH'); // use your test publishable key
+        var elements = stripe.elements();
+        var style = {
+            base: {
+                lineHeight: '24px',
+                fontFamily: 'monospace',
+                fontSmoothing: 'antialiased',
+                fontSize: '19px',
+                '::placeholder': {
+                    color: 'purple'
+                }
+            }
+        };
+        this.card = elements.create('card', { style: style });
+        this.card.mount(this.cardInfo.nativeElement);
+        this.card.addEventListener('change', this.cardHandler);
+    };
+    StripePayementComponent.prototype.ngOnDestroy = function () {
+        this.card.removeEventListener('change', this.cardHandler);
+        this.card.destroy();
+    };
+    StripePayementComponent.prototype.onChange = function (_a) {
+        var error = _a.error;
+        if (error) {
+            this.error = error.message;
+        }
+        else {
+            this.error = null;
+        }
+        this.cd.detectChanges();
+    };
+    StripePayementComponent.prototype.onSubmit = function (form) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, token, error;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, stripe.createToken(this.card)];
+                    case 1:
+                        _a = _b.sent(), token = _a.token, error = _a.error;
+                        if (error) {
+                            console.log('Something is wrong:', error);
+                        }
+                        else {
+                            console.log('Success!', token);
+                            // ...send the token to the your backend to process the charge
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('cardInfo'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], StripePayementComponent.prototype, "cardInfo", void 0);
+    StripePayementComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-stripe-payement',
+            template: __webpack_require__(/*! ./stripe-payement.component.html */ "./src/app/stripe-payement/stripe-payement.component.html"),
+            styles: [__webpack_require__(/*! ./stripe-payement.component.scss */ "./src/app/stripe-payement/stripe-payement.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], _services_cart_data_service__WEBPACK_IMPORTED_MODULE_1__["CartDataService"]])
+    ], StripePayementComponent);
+    return StripePayementComponent;
 }());
 
 
